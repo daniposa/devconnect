@@ -4,6 +4,85 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useData } from "@/data/DataContext";
+import MultiSelect from "@/components/MultiSelect";
+
+const TECH_OPTIONS = [
+  "TypeScript",
+  "JavaScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Python",
+  "Rust",
+  "Go",
+  "Swift",
+  "Kotlin",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "GraphQL",
+  "Kafka",
+  "React Native",
+  "Firebase",
+  "Figma",
+  "Terraform",
+  "GitHub Actions",
+  "PyTorch",
+  "FastAPI",
+  "CSS",
+  "Tailwind CSS",
+  "Svelte",
+  "WebGL",
+  "WebAssembly",
+  "Storybook",
+  "Testing Library",
+  "OpenAI API",
+  "GitHub API",
+  "Prometheus",
+  "Grafana",
+  "Vue.js",
+  "Angular",
+  "Django",
+  "Flask",
+  "Ruby on Rails",
+  "MongoDB",
+  "MySQL",
+  "SQLite",
+  "Supabase",
+  "Prisma",
+  "tRPC",
+  "Electron",
+  "Tauri",
+  "Vercel",
+  "Netlify",
+];
+
+const ROLE_OPTIONS = [
+  "Frontend Developer",
+  "Backend Developer",
+  "Full-Stack Developer",
+  "Mobile Developer",
+  "DevOps Engineer",
+  "ML Engineer",
+  "Data Engineer",
+  "UI/UX Designer",
+  "Technical Writer",
+  "QA Engineer",
+  "Security Engineer",
+  "Go Developer",
+  "Rust Developer",
+  "Python Developer",
+  "React Developer",
+  "iOS Developer",
+  "Android Developer",
+  "Compiler Engineer",
+  "Platform Engineer",
+  "Site Reliability Engineer",
+  "Product Manager",
+  "Project Manager",
+];
 
 export default function NewProject() {
   const router = useRouter();
@@ -14,36 +93,8 @@ export default function NewProject() {
   const [longDescription, setLongDescription] = useState("");
   const [repoUrl, setRepoUrl] = useState("");
   const [ownerId, setOwnerId] = useState("");
-
-  const [techInput, setTechInput] = useState("");
   const [techStack, setTechStack] = useState<string[]>([]);
-
-  const [roleInput, setRoleInput] = useState("");
   const [openRoles, setOpenRoles] = useState<string[]>([]);
-
-  const addTech = () => {
-    const trimmed = techInput.trim();
-    if (trimmed && !techStack.includes(trimmed)) {
-      setTechStack([...techStack, trimmed]);
-      setTechInput("");
-    }
-  };
-
-  const removeTech = (tech: string) => {
-    setTechStack(techStack.filter((t) => t !== tech));
-  };
-
-  const addRole = () => {
-    const trimmed = roleInput.trim();
-    if (trimmed && !openRoles.includes(trimmed)) {
-      setOpenRoles([...openRoles, trimmed]);
-      setRoleInput("");
-    }
-  };
-
-  const removeRole = (role: string) => {
-    setOpenRoles(openRoles.filter((r) => r !== role));
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +149,6 @@ export default function NewProject() {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          {/* Basic info */}
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Project Name <span className="text-red-400">*</span>
@@ -149,7 +199,6 @@ export default function NewProject() {
             />
           </div>
 
-          {/* Owner */}
           <div>
             <label className="mb-1.5 block text-sm font-medium text-text-primary">
               Project Owner <span className="text-red-400">*</span>
@@ -169,103 +218,24 @@ export default function NewProject() {
             </select>
           </div>
 
-          {/* Tech stack */}
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-text-primary">Tech Stack</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={techInput}
-                onChange={(e) => setTechInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    addTech();
-                  }
-                }}
-                placeholder="Type a technology and press Enter"
-                className={inputClass}
-              />
-              <button
-                type="button"
-                onClick={addTech}
-                className="shrink-0 rounded-lg bg-surface-hover px-4 py-2.5 text-sm font-medium text-text-primary transition-colors hover:bg-accent hover:text-white"
-              >
-                Add
-              </button>
-            </div>
-            {techStack.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
-                  >
-                    {tech}
-                    <button
-                      type="button"
-                      onClick={() => removeTech(tech)}
-                      className="hover:text-red-400 transition-colors"
-                    >
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+          <MultiSelect
+            label="Tech Stack"
+            options={TECH_OPTIONS}
+            selected={techStack}
+            onChange={setTechStack}
+            placeholder="Search technologies..."
+            badgeClass="border-accent/20 bg-accent/10 text-accent"
+          />
 
-          {/* Open roles */}
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-text-primary">Open Roles</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={roleInput}
-                onChange={(e) => setRoleInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    addRole();
-                  }
-                }}
-                placeholder="e.g. Frontend Developer, DevOps Engineer"
-                className={inputClass}
-              />
-              <button
-                type="button"
-                onClick={addRole}
-                className="shrink-0 rounded-lg bg-surface-hover px-4 py-2.5 text-sm font-medium text-text-primary transition-colors hover:bg-accent hover:text-white"
-              >
-                Add
-              </button>
-            </div>
-            {openRoles.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {openRoles.map((role) => (
-                  <span
-                    key={role}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-green/20 bg-green/10 px-3 py-1 text-xs font-medium text-green"
-                  >
-                    {role}
-                    <button
-                      type="button"
-                      onClick={() => removeRole(role)}
-                      className="hover:text-red-400 transition-colors"
-                    >
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+          <MultiSelect
+            label="Open Roles"
+            options={ROLE_OPTIONS}
+            selected={openRoles}
+            onChange={setOpenRoles}
+            placeholder="Search roles..."
+            badgeClass="border-green/20 bg-green/10 text-green"
+          />
 
-          {/* Submit */}
           <div className="flex items-center gap-3 pt-2">
             <button
               type="submit"

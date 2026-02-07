@@ -4,6 +4,60 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useData } from "@/data/DataContext";
+import MultiSelect from "@/components/MultiSelect";
+
+const TECH_OPTIONS = [
+  "TypeScript",
+  "JavaScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Python",
+  "Rust",
+  "Go",
+  "Swift",
+  "Kotlin",
+  "PostgreSQL",
+  "Redis",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+  "GraphQL",
+  "Kafka",
+  "React Native",
+  "Firebase",
+  "Figma",
+  "Terraform",
+  "GitHub Actions",
+  "PyTorch",
+  "FastAPI",
+  "CSS",
+  "Tailwind CSS",
+  "Svelte",
+  "WebGL",
+  "WebAssembly",
+  "Storybook",
+  "Testing Library",
+  "OpenAI API",
+  "GitHub API",
+  "Prometheus",
+  "Grafana",
+  "Vue.js",
+  "Angular",
+  "Django",
+  "Flask",
+  "Ruby on Rails",
+  "MongoDB",
+  "MySQL",
+  "SQLite",
+  "Supabase",
+  "Prisma",
+  "tRPC",
+  "Electron",
+  "Tauri",
+  "Vercel",
+  "Netlify",
+];
 
 const bgColors = ["b6e3f4", "c0aede", "ffd5dc", "d1f4d9", "ffeab6", "c3e4f7", "f4d9b6", "deb6e3"];
 
@@ -16,7 +70,6 @@ export default function NewDeveloper() {
   const [location, setLocation] = useState("");
   const [github, setGithub] = useState("");
   const [bio, setBio] = useState("");
-  const [techInput, setTechInput] = useState("");
   const [technologies, setTechnologies] = useState<string[]>([]);
   const [availableForCollab, setAvailableForCollab] = useState(true);
 
@@ -28,18 +81,6 @@ export default function NewDeveloper() {
   const [projDesc, setProjDesc] = useState("");
   const [projUrl, setProjUrl] = useState("");
   const [projLang, setProjLang] = useState("");
-
-  const addTech = () => {
-    const trimmed = techInput.trim();
-    if (trimmed && !technologies.includes(trimmed)) {
-      setTechnologies([...technologies, trimmed]);
-      setTechInput("");
-    }
-  };
-
-  const removeTech = (tech: string) => {
-    setTechnologies(technologies.filter((t) => t !== tech));
-  };
 
   const addProject = () => {
     if (projName.trim() && projDesc.trim()) {
@@ -179,52 +220,14 @@ export default function NewDeveloper() {
           </div>
 
           {/* Technologies */}
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-text-primary">Technologies</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={techInput}
-                onChange={(e) => setTechInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    addTech();
-                  }
-                }}
-                placeholder="Type a technology and press Enter"
-                className={inputClass}
-              />
-              <button
-                type="button"
-                onClick={addTech}
-                className="shrink-0 rounded-lg bg-surface-hover px-4 py-2.5 text-sm font-medium text-text-primary transition-colors hover:bg-accent hover:text-white"
-              >
-                Add
-              </button>
-            </div>
-            {technologies.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
-                  >
-                    {tech}
-                    <button
-                      type="button"
-                      onClick={() => removeTech(tech)}
-                      className="hover:text-red-400 transition-colors"
-                    >
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+          <MultiSelect
+            label="Technologies"
+            options={TECH_OPTIONS}
+            selected={technologies}
+            onChange={setTechnologies}
+            placeholder="Search technologies..."
+            badgeClass="border-accent/20 bg-accent/10 text-accent"
+          />
 
           {/* Projects */}
           <div>
