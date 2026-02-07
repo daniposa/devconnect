@@ -10,8 +10,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "DevConnect - Developer Networking Platform",
-  description: "Connect with developers, showcase your projects, and find collaborators for your next big idea.",
+  title: "DevTables - Developer Dinners in Medellin",
+  description: "Recurring small-group dinners for developers. Every Wednesday, 6 strangers meet for 90 minutes of genuine conversation and collaboration.",
 };
 
 export default function RootLayout({
