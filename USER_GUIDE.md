@@ -131,7 +131,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Admin Navigates to /admin/events/[id]] --> B[View Confirmed Bookings]
+    A["Admin Navigates to /admin/events/(id)"] --> B[View Confirmed Bookings]
     B --> C[Click 'Run Matching']
     C --> D[Matching Algorithm Executes]
     D --> E[Algorithm Constraints Check]
@@ -192,7 +192,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Event Day Arrives] --> B[User Navigates to /events/[id]/checkin]
+    A[Event Day Arrives] --> B["User Navigates to /events/(id)/checkin"]
     B --> C{Has Booking?}
     C -->|No| D[Error: No Booking]
     C -->|Yes| E{Table Assigned?}
@@ -238,7 +238,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[3+ Tablemates Check In] --> B[Icebreakers Unlock]
-    B --> C[Navigate to /events/[id]/icebreakers]
+    B --> C["Navigate to /events/(id)/icebreakers"]
     C --> D[See Table Norms Card]
     D --> E[Dismiss Norms]
     E --> F[View First Prompt]
@@ -295,7 +295,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Event Completes] --> B[Navigate to /events/[id]/feedback]
+    A[Event Completes] --> B["Navigate to /events/(id)/feedback"]
     B --> C[Rate Event: 1-5 Stars]
     C --> D[For Each Tablemate]
     D --> E{Choose Action}
