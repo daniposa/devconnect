@@ -20,8 +20,6 @@ A concise guide to understanding how DevTables works, based on the codebase and 
 
 ## Core User Flows
 
-> **Note**: This guide includes Mermaid diagrams. For best viewing, use a markdown viewer that supports Mermaid (like VS Code, GitHub with Mermaid support, or online viewers). Text descriptions are provided for each flow.
-
 ### Flow 1: Onboarding & Profile Creation
 
 **Flow Steps:**
@@ -34,29 +32,7 @@ A concise guide to understanding how DevTables works, based on the codebase and 
 7. Redirected to Events Page
 8. Profile Saved to DataContext
 
-**Visual Flow:**
-```
-Land on Homepage
-    ↓
-Logged In? ──No──→ Click 'Log in as' → Select User
-    │                        ↓
-   Yes                      ↓
-    │                        ↓
-    └──→ Click 'Create Profile'
-              ↓
-        Fill Profile Form
-              ↓
-      Accept Code of Conduct
-              ↓
-         Submit Profile
-              ↓
-    Redirected to Events Page
-              ↓
-    Profile Saved to DataContext
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -75,8 +51,6 @@ flowchart TD
     style I fill:#c8e6c9
     style J fill:#c8e6c9
 ```
-
-</details>
 
 **Profile Fields:**
 - Basic: Name, title, location (city zone), bio
@@ -102,28 +76,7 @@ flowchart TD
 7. Spots remaining decrements
 8. Booking visible in Dashboard
 
-**Visual Flow:**
-```
-Navigate to /events
-    ↓
-Browse Upcoming Wednesdays
-    ↓
-Event Status?
-    ├─ Open ──→ Click 'Book a Seat'
-    │              ↓
-    │         Confirmation Modal
-    │              ↓
-    │         Confirm? ──Yes──→ Booking Created
-    │              │                    ↓
-    │             No            Button → 'Cancel Booking'
-    │              │                    ↓
-    │              └──→ Back      Spots Decrement
-    │                                  ↓
-    └─ Full/Closed ──→ See 'Fully Booked'    Dashboard Shows Booking
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -143,8 +96,6 @@ flowchart TD
     style H fill:#c8e6c9
     style K fill:#c8e6c9
 ```
-
-</details>
 
 **Event States:**
 - `draft` → Not yet open
@@ -176,34 +127,7 @@ flowchart TD
 13. Event Status changes to "assigned"
 14. Users see their table assignment
 
-**Visual Flow:**
-```
-Admin → /admin/events/[id]
-    ↓
-View Confirmed Bookings
-    ↓
-Click 'Run Matching'
-    ↓
-Matching Algorithm Executes
-    ↓
-Constraints Check ──Pass──→ Assign Tables (5-6 people)
-    │                            ↓
-   Fail                    Assign Venues
-    │                            ↓
-Relax & Retry            Generate Table Codes
-    │                            ↓
-    └──────────────────→ Display Results
-                              ↓
-                    Admin Approves?
-                         ├─ Yes ──→ Publish Assignments
-                         │            ↓
-                        No      Status → 'assigned'
-                         │            ↓
-                  Manual Adjust ──→ Users See Assignment
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -230,8 +154,6 @@ flowchart TD
     style O fill:#c8e6c9
     style P fill:#c8e6c9
 ```
-
-</details>
 
 **Matching Constraints (Hard):**
 - Table size: 5-6 people
@@ -266,37 +188,7 @@ flowchart TD
 8. Icebreakers unlock when 3+ tablemates check in
 9. Admin sees real-time check-in status
 
-**Visual Flow:**
-```
-Event Day Arrives
-    ↓
-Navigate to /events/[id]/checkin
-    ↓
-Has Booking? ──No──→ Error: No Booking
-    │
-   Yes
-    ↓
-Table Assigned? ──No──→ Error: Wait for Matching
-    │
-   Yes
-    ↓
-Enter Table Code
-    ↓
-Code Valid? ──No──→ Error: Invalid Code
-    │
-   Yes
-    ↓
-Check-In Confirmed
-    ↓
-Added to checkedIn Array
-    ↓
-Icebreakers Unlock (3+ check-ins)
-    ↓
-Admin Sees Real-Time Status
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -317,8 +209,6 @@ flowchart TD
     style J fill:#c8e6c9
     style L fill:#c8e6c9
 ```
-
-</details>
 
 **Check-In Requirements:**
 - Must have confirmed booking
@@ -343,39 +233,7 @@ flowchart TD
 11. When timer reaches 75 min → Last Drinks card reveals
 12. After-party venue shown with map link
 
-**Visual Flow:**
-```
-3+ Tablemates Check In
-    ↓
-Icebreakers Unlock
-    ↓
-Navigate to /events/[id]/icebreakers
-    ↓
-See Table Norms Card → Dismiss
-    ↓
-View First Prompt
-    ↓
-90-Min Timer Starts
-    ↓
-Round 1: Warm-up (3 prompts)
-    ↓
-Click 'Next Prompt'
-    ↓
-Round 2: Depth (4 prompts)
-    ↓
-Click 'Next Prompt'
-    ↓
-Round 3: Future (3 prompts)
-    ↓
-Timer at 75min? ──Yes──→ Last Drinks Card Reveals
-    │                        ↓
-   No                  After-Party Venue Shown
-    │
-    └──→ Continue Prompts
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -400,8 +258,6 @@ flowchart TD
     style B fill:#c8e6c9
     style N fill:#ffccbc
 ```
-
-</details>
 
 **Icebreaker Structure:**
 - **10 prompts total** per event
@@ -435,36 +291,7 @@ flowchart TD
 10. Full profiles unlocked for mutual connections
 11. Reports added to admin queue
 
-**Visual Flow:**
-```
-Event Completes
-    ↓
-Navigate to /events/[id]/feedback
-    ↓
-Rate Event: 1-5 Stars
-    ↓
-For Each Tablemate:
-    ↓
-Choose Action:
-    ├─ Connect ──→ Add Note (optional) ──→ Next Tablemate
-    ├─ Neutral ──→ Next Tablemate
-    └─ Report ──→ Select Reason + Description ──→ Submit Report ──→ Next Tablemate
-    ↓
-Submit Feedback
-    ↓
-Mutual Connect Detection
-    ↓
-Both Selected Connect? ──Yes──→ Connection Created
-    │                              ↓
-   No                        Toast: 'Matched!'
-    │                              ↓
-No Connection            Full Profiles Unlocked
-    │
-    └──→ Reports → Admin Queue
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -496,8 +323,6 @@ flowchart TD
     style T fill:#ffccbc
 ```
 
-</details>
-
 **Connection Privacy:**
 - **Before mutual connect**: Only display name, avatar, tech stack visible
 - **After mutual connect**: Full profile (name, GitHub, LinkedIn, email) visible
@@ -507,45 +332,7 @@ flowchart TD
 
 ## Architecture Overview
 
-**System Structure:**
-```
-┌─────────────────────────────────────┐
-│   Client-Side Next.js App           │
-│                                      │
-│   Pages/Components                   │
-│         ↓                            │
-│   DataContext                        │
-│         ├──→ Mock Data               │
-│         └──→ Matching Algorithm     │
-└─────────────────────────────────────┘
-
-┌─────────────────────────────────────┐
-│   State Management                  │
-│                                      │
-│   DataContext manages:              │
-│   • Events Array                    │
-│   • Bookings Array                  │
-│   • Tables Array                    │
-│   • Feedback Array                  │
-│   • Connections Array                │
-│   • Current User                    │
-└─────────────────────────────────────┘
-
-┌─────────────────────────────────────┐
-│   Key Features                      │
-│                                      │
-│   User Picker ──→ Current User      │
-│   Event Booking ──→ Bookings Array  │
-│   Table Matching ──→ Algorithm      │
-│   Check-In ──→ Tables Array         │
-│   Icebreakers ──→ Prompts Array     │
-│   Feedback ──→ Feedback Array       │
-│   Mutual Connect ──→ Connections     │
-└─────────────────────────────────────┘
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Architecture Diagram:**
 
 ```mermaid
 graph TB
@@ -579,8 +366,6 @@ graph TB
     style J fill:#c8e6c9
 ```
 
-</details>
-
 ---
 
 ## Key Features Explained
@@ -593,35 +378,7 @@ graph TB
 
 ### 2. Event Lifecycle
 
-**State Transitions:**
-```
-[*] → draft (Admin Creates Event)
-draft → open (Admin Opens Booking)
-open → closed (Booking Period Ends)
-closed → matching (Admin Runs Matching)
-matching → assigned (Matching Complete)
-assigned → live (Event Starts)
-live → completed (Event Ends)
-completed → [*]
-
-Cancellation paths:
-open → cancelled (Admin Cancels)
-closed → cancelled (Admin Cancels)
-matching → cancelled (Admin Cancels)
-assigned → cancelled (Admin Cancels)
-```
-
-**State Flow:**
-```
-Start
-  ↓
-draft ──→ open ──→ closed ──→ matching ──→ assigned ──→ live ──→ completed
-  │         │         │           │            │
-  └─────────┴─────────┴───────────┴────────────┴──→ cancelled
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**State Diagram:**
 
 ```mermaid
 stateDiagram-v2
@@ -640,8 +397,6 @@ stateDiagram-v2
     assigned --> cancelled: Admin Cancels
 ```
 
-</details>
-
 ### 3. Matching Algorithm Flow
 
 **Algorithm Steps:**
@@ -659,41 +414,7 @@ stateDiagram-v2
 7. Generate Table Codes (4-character codes)
 8. Return Tables
 
-**Visual Flow:**
-```
-Get Booked Users
-    ↓
-Calculate Table Sizes
-    ↓
-Shuffle Users
-    ↓
-Separate Language-Constrained Users
-    ↓
-For Each User:
-    ↓
-Find Best Table
-    ↓
-Check Hard Constraints ──Fail──→ Skip Table
-    │
-   Pass
-    ↓
-Calculate Diversity Score
-    ↓
-Select Highest Score
-    ↓
-Assign User
-    ↓
-[Loop for all users]
-    ↓
-Assign Venues
-    ↓
-Generate Table Codes
-    ↓
-Return Tables
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Algorithm Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -717,8 +438,6 @@ flowchart TD
     style N fill:#c8e6c9
 ```
 
-</details>
-
 **Algorithm Details:**
 - **Input**: Booked users, venues, recent pairs (last 4 events), blocked pairs
 - **Output**: Array of `DinnerTable` objects with members, venue, code
@@ -727,36 +446,7 @@ flowchart TD
 
 ### 4. Data Flow
 
-**Sequence:**
-1. User interacts with UI (clicks button, fills form)
-2. Page Component receives interaction
-3. Page Component calls action in DataContext (e.g., `addBooking()`)
-4. DataContext updates state array (in-memory)
-5. DataContext triggers re-render
-6. Page Component receives updated data
-7. UI updates to reflect changes
-
-**Visual Sequence:**
-```
-User ──Interacts──→ Page Component
-                      ↓
-                 Calls Action
-                      ↓
-                 DataContext
-                      ↓
-              Updates State Array
-                      ↓
-            Triggers Re-render
-                      ↓
-                 Page Component
-                      ↓
-User ←── UI Updates ───┘
-
-Note: All data in-memory, resets on page reload
-```
-
-<details>
-<summary>View Mermaid Diagram (requires Mermaid support)</summary>
+**Sequence Diagram:**
 
 ```mermaid
 sequenceDiagram
@@ -773,8 +463,6 @@ sequenceDiagram
     
     Note over C,M: All data in-memory<br/>Resets on page reload
 ```
-
-</details>
 
 ---
 
