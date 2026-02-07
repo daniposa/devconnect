@@ -313,7 +313,7 @@ flowchart TD
     N --> O{Both Selected Connect?}
     O -->|Yes| P[Connection Created]
     O -->|No| Q[No Connection]
-    P --> R[Toast: 'You matched with [Name]!']
+    P --> R["Toast: 'You matched with (Name)!'"]
     R --> S[Full Profiles Unlocked]
     L --> T[Report Added to Admin Queue]
     
