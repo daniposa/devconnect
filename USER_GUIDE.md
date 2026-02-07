@@ -1,6 +1,8 @@
-# DevTables User Guide
+# DevTables Technical User Guide
 
-A concise guide to understanding how DevTables works, based on the codebase and specifications.
+> **👥 For End Users:** Looking for a simple guide on how to use DevTables? Check out the **[Quick Start Guide](QUICK_START.md)** instead!
+
+A technical guide to understanding how DevTables works, based on the codebase and specifications. This document is intended for developers, administrators, and technical stakeholders who want to understand the system architecture, data flows, and implementation details.
 
 ## Overview
 
@@ -561,15 +563,13 @@ All state is managed via **React Context** (`DataContext.tsx`) with in-memory ar
 
 ## Quick Start for Users
 
-1. **Log in**: Click "Log in as" in navbar, select a user
-2. **Create profile**: Go to `/developers/new` (if not already created)
-3. **Browse events**: Go to `/events`
-4. **Book a seat**: Click "Book a Seat" on an open event
-5. **Wait for matching**: Admin runs matching, you'll see table assignment
-6. **Check in**: On event day, go to `/events/[id]/checkin`, enter your table code
-7. **Use icebreakers**: Go to `/events/[id]/icebreakers`, follow prompts
-8. **Give feedback**: After event, go to `/events/[id]/feedback`, rate and connect
-9. **View connections**: Go to `/connections` to see mutual matches
+For a user-friendly, step-by-step guide on how to use DevTables, please see the **[Quick Start Guide](QUICK_START.md)**.
+
+The Quick Start Guide includes:
+- Simple 4-step getting started process
+- Detailed instructions for each feature
+- FAQs and tips for a great experience
+- Troubleshooting and help resources
 
 ---
 
