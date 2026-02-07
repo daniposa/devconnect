@@ -47,9 +47,9 @@ flowchart TD
     H --> I[Redirected to Events Page]
     I --> J[Profile Saved to DataContext]
     
-    style A fill:#e1f5ff
-    style I fill:#c8e6c9
-    style J fill:#c8e6c9
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style I fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style J fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 **Profile Fields:**
@@ -92,9 +92,9 @@ flowchart TD
     I --> J[Spots Remaining Decrements]
     J --> K[Booking Visible in Dashboard]
     
-    style A fill:#e1f5ff
-    style H fill:#c8e6c9
-    style K fill:#c8e6c9
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style H fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style K fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 **Event States:**
@@ -149,10 +149,10 @@ flowchart TD
     M --> O[Event Status → 'assigned']
     O --> P[Users See Table Assignment]
     
-    style A fill:#fff9c4
-    style D fill:#e1f5ff
-    style O fill:#c8e6c9
-    style P fill:#c8e6c9
+    style A fill:#FFC107,stroke:#F57C00,stroke-width:2px,color:#000
+    style D fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style O fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style P fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 **Matching Constraints (Hard):**
@@ -205,9 +205,9 @@ flowchart TD
     K --> L[Icebreakers Unlock at 3+ Check-ins]
     L --> M[Admin Sees Real-Time Status]
     
-    style A fill:#e1f5ff
-    style J fill:#c8e6c9
-    style L fill:#c8e6c9
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style J fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style L fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 **Check-In Requirements:**
@@ -254,9 +254,9 @@ flowchart TD
     O --> M
     N --> P[After-Party Venue Shown]
     
-    style A fill:#e1f5ff
-    style B fill:#c8e6c9
-    style N fill:#ffccbc
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style B fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style N fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
 ```
 
 **Icebreaker Structure:**
@@ -317,10 +317,10 @@ flowchart TD
     R --> S[Full Profiles Unlocked]
     L --> T[Report Added to Admin Queue]
     
-    style A fill:#e1f5ff
-    style P fill:#c8e6c9
-    style S fill:#c8e6c9
-    style T fill:#ffccbc
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style P fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style S fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style T fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
 ```
 
 **Connection Privacy:**
@@ -361,9 +361,9 @@ graph TB
         R[Mutual Connect] --> I
     end
     
-    style B fill:#e1f5ff
-    style D fill:#fff9c4
-    style J fill:#c8e6c9
+    style B fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style D fill:#FFC107,stroke:#F57C00,stroke-width:2px,color:#000
+    style J fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 ---
@@ -433,9 +433,9 @@ flowchart TD
     L --> M[Generate Table Codes]
     M --> N[Return Tables]
     
-    style A fill:#e1f5ff
-    style G fill:#fff9c4
-    style N fill:#c8e6c9
+    style A fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style G fill:#FFC107,stroke:#F57C00,stroke-width:2px,color:#000
+    style N fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
 ```
 
 **Algorithm Details:**
