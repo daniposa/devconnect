@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevConnect
+
+A developer networking and collaboration platform where developers can showcase their profiles, discover other talented developers, and find open-source projects seeking contributors.
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
+
+## Features
+
+- **Developer Directory** — Browse developer profiles with tech stacks, personal projects, GitHub links, and collaboration availability
+- **Project Discovery** — Find open-source projects actively recruiting contributors, organized by status (Recruiting, In Progress, Launched)
+- **Profile Creation** — Create a developer profile showcasing your skills, projects, and availability
+- **Project Posting** — Post new projects with role openings and recruit team members
+- **Apply to Join** — Browse open roles on projects and apply to collaborate
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| UI | [React 19](https://react.dev/) |
+| Language | [TypeScript 5](https://www.typescriptlang.org/) |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
+| Avatars | [DiceBear API](https://www.dicebear.com/) |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+git clone https://github.com/daniposa/devconnect.git
+cd devconnect
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── page.tsx                  # Home — developer directory
+│   ├── layout.tsx                # Root layout with global state
+│   ├── globals.css               # Tailwind theme configuration
+│   ├── developers/
+│   │   ├── [id]/page.tsx         # Developer profile detail
+│   │   └── new/page.tsx          # Create developer profile
+│   └── projects/
+│       ├── [id]/page.tsx         # Project detail page
+│       └── new/page.tsx          # Create new project
+├── components/
+│   ├── Navbar.tsx                # Navigation header
+│   ├── DeveloperCard.tsx         # Developer card for listings
+│   ├── ProjectCard.tsx           # Project card for listings
+│   └── TechBadge.tsx             # Color-coded technology badge
+└── data/
+    ├── types.ts                  # TypeScript interfaces
+    ├── mock.ts                   # Sample developers & projects
+    └── DataContext.tsx            # React Context state management
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|-------|-------------|
+| `/` | Developer directory with profile cards |
+| `/developers/[id]` | Individual developer profile |
+| `/developers/new` | Create a new developer profile |
+| `/projects` | Open projects directory grouped by status |
+| `/projects/[id]` | Project detail with team and open roles |
+| `/projects/new` | Post a new project seeking contributors |
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
